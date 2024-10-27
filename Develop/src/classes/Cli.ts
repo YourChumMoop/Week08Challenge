@@ -270,8 +270,7 @@ class Cli {
   }
 
   // method to find a vehicle to tow
-  // TODO: add a parameter to accept a truck object
-  findVehicleToTow(): void {
+  findVehicleToTow(towTruck:Truck): void {
     inquirer
       .prompt([
         {
@@ -287,10 +286,14 @@ class Cli {
         },
       ])
       .then((answers) => {
-        
-        // TODO: check if the selected vehicle is the truck
-        // TODO: if it is, log that the truck cannot tow itself then perform actions on the truck to allow the user to select another action
-        // TODO: if it is not, tow the selected vehicle then perform actions on the truck to allow the user to select another action
+        // check if the selected vehicle is the truck by comparing VIN numbers; a truck cannot tow itself!
+        if(towTruck.vin === answers.vin){
+          console.log('The Truck cannot tow itself!');
+          this.findVehicleToTow(towTruck);
+        } else {
+          towTruck.tow(answers); // Tow the selected vehicle
+          this.performActions(); // Go back to asking about actions to perform
+        }
       });
   }
 
@@ -302,7 +305,6 @@ class Cli {
           type: 'list',
           name: 'action',
           message: 'Select an action',
-          // TODO: add options to tow and wheelie
           choices: [
             'Print details',
             'Start vehicle',
@@ -312,6 +314,8 @@ class Cli {
             'Turn right',
             'Turn left',
             'Reverse',
+            'Tow',
+            'Wheelie',
             'Select or create another vehicle',
             'Exit',
           ],
