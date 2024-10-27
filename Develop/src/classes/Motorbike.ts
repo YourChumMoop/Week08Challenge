@@ -12,6 +12,7 @@ class Motorbike extends Vehicle{
   weight: number;
   topSpeed: number;
   wheels: Wheel[];
+  // Contructor for Motorbike class
   constructor(
       vin: string,
       color: string,
@@ -32,22 +33,22 @@ class Motorbike extends Vehicle{
     this.year = year;
     this.weight = weight;
     this.topSpeed = topSpeed;
-
+    // Check to see if the motorbike has it's wheels. If it doesn't, add the wheels.
     if (wheels.length !== 2) {
       this.wheels = [new Wheel(), new Wheel()];
     } else {
       this.wheels = wheels;
     }
   }
-
+  // Method for popping a wheelie
   Wheelie():void{
     console.log(`Motorbike ${this.make} ${this.model} is doing a wheelie!`);
   }
-  // TODO: Override the printDetails method from the Vehicle class
+  // printDetails override to add motorbike information to base details.
   override printDetails(): void {
     super.printDetails();
 
-    // Print details of the Car class
+    // Print details of the Motorbike class
     console.log(`VIN: ${this.vin}`);
     console.log(`Color: ${this.color}`);
     console.log(`Make: ${this.make}`);

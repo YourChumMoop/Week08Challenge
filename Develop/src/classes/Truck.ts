@@ -5,9 +5,8 @@ import Car from './Car.js';
 import Wheel from './Wheel.js';
 import AbleToTow from '../interfaces/AbleToTow.js';
 
-// TODO: The Truck class should extend the Vehicle class and should implement the AbleToTow interface
 class Truck extends Vehicle implements AbleToTow{
-  // TODO: Declare properties of the Truck class
+  // Truck Class Properties
   vin: string;
   color: string;
   make: string;
@@ -17,11 +16,8 @@ class Truck extends Vehicle implements AbleToTow{
   topSpeed: number;
   wheels: Wheel[];
   towingCapacity: number;
-  // TODO: The properties should include vin, color, make, model, year, weight, top speed, wheels, and towing capacity
-  // TODO: The types should be as follows: vin (string), color (string), make (string), model (string), year (number), weight (number), topSpeed (number), wheels (Wheel[]), towingCapacity (number)
 
-  // TODO: Create a constructor that accepts the properties of the Truck class
-  // TODO: The constructor should initialize the properties of the Truck class
+  // Truck Class Constructor, with additional property for towing capacity
   constructor(
     vin: string,
     color: string,
@@ -33,7 +29,6 @@ class Truck extends Vehicle implements AbleToTow{
     wheels: Wheel[],
     towingCapacity: number,
   ) {
-      // TODO: The constructor should call the constructor of the parent class, Vehicle
       super();
       this.vin = vin;
       this.color = color;
@@ -45,29 +40,26 @@ class Truck extends Vehicle implements AbleToTow{
       this.wheels = wheels;
       this.towingCapacity = towingCapacity;
       
-      // TODO: The constructor should check if the wheels array has 4 elements and create 4 new default Wheel objects if it does not
+      // Check for if the wheels exist, if they do not, add new wheels.
     if (wheels.length !== 4) {
       this.wheels = [new Wheel(), new Wheel(), new Wheel(), new Wheel()];
     } else {
       this.wheels = wheels;
     }
   }
+  // tow method for towing another vehicle. Takes in a vehicle as a parameter, and checks if it's weight is less than the truck's towing capacity
+  // if the weight of the vehicle exeeds the towing capacity, returns a message saing it's too heavy. 
   tow(vehicle: Truck | Motorbike | Car): void {
     const towModel:string = vehicle.model;
     const towMake:string = vehicle.make;
-    // TODO: Get the make an model of the vehicle if it exists
-    // TODO: Check if the vehicle's weight is less than or equal to the truck's towing capacity
-    if(vehicle.weight>this.towingCapacity){
-      console.log(`${vehicle.make} ${vehicle.model} is now being towed`);
+    if(towMake&&towModel) { // Check to make sure method took in an actual vehicle
+      console.log(vehicle.weight>this.towingCapacity ? `${towMake} ${towModel} is now being towed`:`${towMake} ${towModel} is too heavy to be towed`);
     } else {
-      console.log(`${vehicle.make} ${vehicle.model} is too heavy to be towed`);
+      console.log('Invalid Vehicle!');
     }
   }
 
-  // TODO: Override the printDetails method from the Vehicle class
-    // TODO: The method should call the printDetails method of the parent class
-    // TODO: The method should log the details of the Truck
-    // TODO: The details should include the VIN, make, model, year, weight, top speed, color, towing capacity, and wheels
+    // printDetails override that adds on Truck information
     override printDetails(): void {
       // Call the printDetails method of the parent class, Vehicle
       super.printDetails();
