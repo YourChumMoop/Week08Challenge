@@ -388,6 +388,8 @@ class Cli {
                 // If it's a truck, find a vehicle to tow.
                 this.findVehicleToTow(this.vehicles[i] as Truck);
                 return;
+              } else {
+                console.log(`${this.vehicles[i].make} is NOT a truck and connot tow!`); //If not a truck, let them know
               }
             }          
           }
@@ -399,6 +401,8 @@ class Cli {
                 // If it's a Motorbike, pop a wheelie!
                 let motoB = this.vehicles[i] as Motorbike;
                 motoB.Wheelie();
+              } else {
+                console.log(`${this.vehicles[i].make} is NOT a Motorbike! It can't pop a wheelie!`)
               }
             }          
           }
