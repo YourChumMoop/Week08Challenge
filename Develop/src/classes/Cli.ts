@@ -291,7 +291,7 @@ class Cli {
           console.log('The Truck cannot tow itself!');
           this.findVehicleToTow(towTruck);
         } else {
-          towTruck.tow(answers); // Tow the selected vehicle
+          towTruck.tow(answers.value); // Tow the selected vehicle
           this.performActions(); // Go back to asking about actions to perform
         }
       });
@@ -379,10 +379,30 @@ class Cli {
               this.vehicles[i].reverse();
             }
           }
-        }
-        // TODO: add statements to perform the tow action only if the selected vehicle is a truck. Call the findVehicleToTow method to find a vehicle to tow and pass the selected truck as an argument. After calling the findVehicleToTow method, you will need to return to avoid instantly calling the performActions method again since findVehicleToTow is asynchronous.
-        // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
-        else if (answers.action === 'Select or create another vehicle') {
+        } else if (answers.action === 'Tow') {
+          // find the selcted vehicle
+          for (let i = 0; i < this.vehicles.length; i++) {
+            if (this.vehicles[i].vin === this.selectedVehicleVin) {
+              //check if it's a truck
+              if(this.vehicles[i] instanceof Truck) {
+                // If it's a truck, find a vehicle to tow.
+                this.findVehicleToTow(this.vehicles[i] as Truck);
+                return;
+              }
+            }          
+          }
+        } else if (answers.action === 'Wheelie') { 
+          for (let i = 0; i < this.vehicles.length; i++) {
+            if (this.vehicles[i].vin === this.selectedVehicleVin) {
+              //check if it's a Motorbike
+              if(this.vehicles[i] instanceof Motorbike) {
+                // If it's a Motorbike, pop a wheelie!
+                let motoB = this.vehicles[i] as Motorbike;
+                motoB.Wheelie();
+              }
+            }          
+          }
+        } else if (answers.action === 'Select or create another vehicle') {
           // start the cli to return to the initial prompt if the user wants to select or create another vehicle
           this.startCli();
           return;
