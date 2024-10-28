@@ -41,7 +41,7 @@ Once you have downloaded the code from the repository use the Cli to build and r
 ```bash
 npm start
 ```
-You can see a demonstration video for the Vehicle Builder [HERE]()
+You can see a demonstration video for the Vehicle Builder [HERE](https://drive.google.com/file/d/12ueU0xhD8X89l41AwOe0EVGhem85FWAf/view?usp=sharing)
 
 
 
