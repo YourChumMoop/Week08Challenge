@@ -53,7 +53,7 @@ class Truck extends Vehicle implements AbleToTow{
     const towModel:string = vehicle.model;
     const towMake:string = vehicle.make;
     if(towMake&&towModel) { // Check to make sure method took in an actual vehicle
-      console.log(vehicle.weight>this.towingCapacity ? `${towMake} ${towModel} is now being towed`:`${towMake} ${towModel} is too heavy to be towed`);
+      console.log(vehicle.weight<this.towingCapacity ? `${towMake} ${towModel} is now being towed`:`${towMake} ${towModel} is too heavy to be towed`);
     } else {
       console.log('Invalid Vehicle!');
     }

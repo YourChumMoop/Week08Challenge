@@ -245,12 +245,12 @@ class Cli {
         ])
             .then((answers) => {
             // check if the selected vehicle is the truck by comparing VIN numbers; a truck cannot tow itself!
-            if (towTruck.vin === answers.vin) {
+            if (towTruck.vin === answers.vehicleToTow.vin) {
                 console.log('The Truck cannot tow itself!');
                 this.findVehicleToTow(towTruck);
             }
             else {
-                towTruck.tow(answers.value); // Tow the selected vehicle
+                towTruck.tow(answers.vehicleToTow); // Tow the selected vehicle
                 this.performActions(); // Go back to asking about actions to perform
             }
         });
@@ -355,6 +355,9 @@ class Cli {
                             this.findVehicleToTow(this.vehicles[i]);
                             return;
                         }
+                        else {
+                            console.log(`${this.vehicles[i].make} is NOT a truck and connot tow!`); //If not a truck, let them know
+                        }
                     }
                 }
             }
@@ -366,6 +369,9 @@ class Cli {
                             // If it's a Motorbike, pop a wheelie!
                             let motoB = this.vehicles[i];
                             motoB.Wheelie();
+                        }
+                        else {
+                            console.log(`${this.vehicles[i].make} is NOT a Motorbike! It can't pop a wheelie!`);
                         }
                     }
                 }

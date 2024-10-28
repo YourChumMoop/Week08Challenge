@@ -28,7 +28,7 @@ class Truck extends Vehicle {
         const towModel = vehicle.model;
         const towMake = vehicle.make;
         if (towMake && towModel) { // Check to make sure method took in an actual vehicle
-            console.log(vehicle.weight > this.towingCapacity ? `${towMake} ${towModel} is now being towed` : `${towMake} ${towModel} is too heavy to be towed`);
+            console.log(vehicle.weight < this.towingCapacity ? `${towMake} ${towModel} is now being towed` : `${towMake} ${towModel} is too heavy to be towed`);
         }
         else {
             console.log('Invalid Vehicle!');
